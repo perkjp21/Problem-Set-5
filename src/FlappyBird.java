@@ -8,6 +8,8 @@ public class FlappyBird {
     public final int Width = 800, Height = 800;
     public Renderer renderer;
 
+    // test
+
     public FlappyBird () {
         JFrame jframe = new JFrame();
         //Timer timer = new Timer(20, this);
