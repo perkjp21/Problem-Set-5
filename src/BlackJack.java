@@ -19,6 +19,9 @@ public class BlackJack {
 
         StdDraw.setCanvasSize(500, 500);
         StdDraw.setScale(0, 10);
+        StdDraw.clear(new Color(0,100,0));
+        //String filename ="cardBack.png";
+        //StdDraw.picture(5,5, filename, 2 ,3);
 
         int[][] deck = new int[4][13];
 
@@ -51,12 +54,16 @@ public class BlackJack {
             // technically could be situation where dealer has bj as well but will deal with that later
         }
         response = scnr.next().charAt(0);
+
         while (true) {
+            //hit counter
+            int count = 0;
             if (response == 'h' && playerTotal < 21) {
                 card = game.returnActualCard(deck);
                 playerTotal += game.cardBJValue(card);
                 result = game.seeIfResult(playerTotal);
-                draw.playerHit(card);
+                count++;
+                draw.playerHit(card, count);
                 if (result == 1) {
                     System.out.println("You got a " + card + " you now have " + playerTotal);
                     System.out.println("Type h for hit or s for stay");
@@ -71,8 +78,11 @@ public class BlackJack {
             } else if (response == 's') {
                 draw.dealerFlip(houseCard2);
                 System.out.println("The dealers second card was a " + houseCard2 + " and has a total of " + houseTotal);
+                int i = 0;
                 while (houseTotal < 17) {
+                    i++;
                     card = game.returnActualCard(deck);
+                    draw.houseHits(card, i);
                     houseTotal += game.cardBJValue(card);
                     System.out.println("house got " + card + " and now has " + houseTotal);
                 }
@@ -96,6 +106,7 @@ public class BlackJack {
                 System.out.println("Would you like to play again? Type y or n");
                 response = scnr.next().charAt(0);
                 if (response == 'y') {
+                    StdDraw.clear(new Color(0,100,0));
                     game.resetDeck(deck);
                     playerTotal = 0;
                     houseTotal = 0;
