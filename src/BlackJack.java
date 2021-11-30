@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Scanner;
 import java.util.Random;
 
@@ -14,7 +15,10 @@ public class BlackJack {
         int result;
         char response;
         boolean gameOver = false;
+        Draw draw = new Draw();
 
+        StdDraw.setCanvasSize(500, 500);
+        StdDraw.setScale(0, 10);
 
         int[][] deck = new int[4][13];
 
@@ -31,6 +35,10 @@ public class BlackJack {
 
         // will add specifics later
 
+        //draw cards to screen
+        draw.cardsDealt(playerCard1,playerCard2);
+        draw.dealerCards(houseCard1);
+
 
         System.out.println("player has: " + playerCard1 + ", " + playerCard2 + " with a total of " + playerTotal);
         System.out.println("house is showing " + houseCard1);
@@ -38,6 +46,7 @@ public class BlackJack {
         if (result == 1) {
             System.out.println("Type h for hit or s for stay");
         } else if (result == 3) {
+            draw.dealerFlip(houseCard2);
             System.out.println("Blackjack!");
             // technically could be situation where dealer has bj as well but will deal with that later
         }
@@ -47,17 +56,20 @@ public class BlackJack {
                 card = game.returnActualCard(deck);
                 playerTotal += game.cardBJValue(card);
                 result = game.seeIfResult(playerTotal);
+                draw.playerHit(card);
                 if (result == 1) {
                     System.out.println("You got a " + card + " you now have " + playerTotal);
                     System.out.println("Type h for hit or s for stay");
                     response = scnr.next().charAt(0);
                 } else if (result == 2) {
+                    draw.dealerFlip(houseCard2);
                     System.out.println("You busted with " + playerTotal + ". Dealer Wins");
                     gameOver = true;
                 } else if (result == 3) {
                     System.out.println("You have 21");
                 }
             } else if (response == 's') {
+                draw.dealerFlip(houseCard2);
                 System.out.println("The dealers second card was a " + houseCard2 + " and has a total of " + houseTotal);
                 while (houseTotal < 17) {
                     card = game.returnActualCard(deck);
