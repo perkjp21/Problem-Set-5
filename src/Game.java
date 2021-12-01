@@ -77,10 +77,6 @@ public class Game {
         return finalInt;
     }
 
-    public void deal(int initialCard, int playerTotal, int houseTotal, int[][] deck) {
-
-    }
-
     public int seeIfResult(int playerTotal) {
         if (playerTotal == 21) {
             return 3; // bj
@@ -90,5 +86,9 @@ public class Game {
             return 1; // keep playing
         }
     }
+
+//    public void createPlayerCard(int actualCard) {
+//        StdDraw.rectangle(1,1,0.25,0.5);
+//    }
 
 }
