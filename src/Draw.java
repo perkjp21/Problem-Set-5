@@ -99,6 +99,7 @@ public class Draw {
 
     public void dealerCards(int second) {
         String card2;
+        int suit1 = rand.nextInt(4);
 
         card2 = String.valueOf(second);
 
@@ -106,8 +107,26 @@ public class Draw {
         StdDraw.picture(1,8, filename, 2 ,3);
 
         StdDraw.setPenColor(Color.white);
-        //StdDraw.rectangle(1,8,1,1.5);
+
         StdDraw.filledRectangle(3.5,8,1,1.5);
+
+        if (suit1 == 0) {
+            String filename2 ="Heart.png";
+            StdDraw.picture(3.5,8, filename2, .5 ,.75);
+        }
+        if (suit1 == 1) {
+            String filename2 ="Club.png";
+            StdDraw.picture(3.5,8, filename2, .5 ,.75);
+
+        }
+        if (suit1 == 2) {
+            String filename2 ="Spade4.jpeg";
+            StdDraw.picture(3.5,8, filename2, .5 ,.75);
+        }
+        if (suit1 == 3) {
+            String filename2 ="Diamond.png";
+            StdDraw.picture(3.5,8, filename2, .5 ,.75);
+        }
 
         StdDraw.setPenColor(Color.black);
         if (second == 11) {
@@ -134,28 +153,86 @@ public class Draw {
 }
     public void dealerFlip(int first) {
         String card1;
+        int suit1 = rand.nextInt(4);
         card1 = String.valueOf(first);
 
         StdDraw.setPenColor(Color.white);
         StdDraw.filledRectangle(1,8,1,1.5);
         StdDraw.setPenColor(Color.black);
         StdDraw.text(1,9, card1);
+
+        if (suit1 == 0) {
+            String filename ="Heart.png";
+            StdDraw.picture(1,8, filename, .5 ,.75);
+        }
+        if (suit1 == 1) {
+            String filename ="Club.png";
+            StdDraw.picture(1,8, filename, .5 ,.75);
+
+        }
+        if (suit1 == 2) {
+            String filename ="Spade4.jpeg";
+            StdDraw.picture(1,8, filename, .5 ,.75);
+        }
+        if (suit1 == 3) {
+            String filename ="Diamond.png";
+            StdDraw.picture(1,8, filename, .5 ,.75);
+        }
     }
     public void playerHit(int card, int count) {
         String card1 = String.valueOf(card);
+        int suit1 = rand.nextInt(4);
 
         StdDraw.setPenColor(Color.white);
         StdDraw.filledRectangle(3.5 + count * 2.5,2,1,1.5);
         StdDraw.setPenColor(Color.black);
         StdDraw.text(3.5 + count * 2.5,1, card1);
+
+        if (suit1 == 0) {
+            String filename ="Heart.png";
+            StdDraw.picture(3.5 + count * 2.5,2, filename, .5 ,.75);
+        }
+        if (suit1 == 1) {
+            String filename ="Club.png";
+            StdDraw.picture(3.5 + count * 2.5,2, filename, .5 ,.75);
+
+        }
+        if (suit1 == 2) {
+            String filename ="Spade4.jpeg";
+            StdDraw.picture(3.5 + count * 2.5,2, filename, .5 ,.75);
+        }
+        if (suit1 == 3) {
+            String filename ="Diamond.png";
+            StdDraw.picture(3.5 + count * 2.5,2, filename, .5 ,.75);
+        }
     }
     public void houseHits(int card, int count){
         String card1 = String.valueOf(card);
+
+        int suit1 = rand.nextInt(4);
 
         StdDraw.setPenColor(Color.white);
         StdDraw.filledRectangle(3.5 + count * 2.5,8,1,1.5);
         StdDraw.setPenColor(Color.black);
         StdDraw.text(3.5 + count * 2.5,9, card1);
+
+        if (suit1 == 0) {
+            String filename ="Heart.png";
+            StdDraw.picture(3.5 + count * 2.5,8, filename, .5 ,.75);
+        }
+        if (suit1 == 1) {
+            String filename ="Club.png";
+            StdDraw.picture(3.5 + count * 2.5,8, filename, .5 ,.75);
+
+        }
+        if (suit1 == 2) {
+            String filename ="Spade4.jpeg";
+            StdDraw.picture(3.5 + count * 2.5,8, filename, .5 ,.75);
+        }
+        if (suit1 == 3) {
+            String filename ="Diamond.png";
+            StdDraw.picture(3.5 + count * 2.5,8, filename, .5 ,.75);
+        }
     }
     }
 
