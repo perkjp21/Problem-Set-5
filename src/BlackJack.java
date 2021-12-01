@@ -20,8 +20,8 @@ public class BlackJack {
         StdDraw.setCanvasSize(500, 500);
         StdDraw.setScale(0, 10);
         StdDraw.clear(new Color(0,100,0));
-        //String filename ="cardBack.png";
-        //StdDraw.picture(5,5, filename, 2 ,3);
+        String filename ="cardBack.png";
+        StdDraw.picture(5,5, filename, 2 ,3);
 
         int[][] deck = new int[4][13];
 
@@ -120,6 +120,9 @@ public class BlackJack {
                     playerCard2 = game.returnActualCard(deck); // second card
                     playerTotal += game.cardBJValue(playerCard2);
                     gameOver = false;
+
+                    draw.cardsDealt(playerCard1,playerCard2);
+                    draw.dealerCards(houseCard2);
 
                     System.out.println("player has: " + playerCard1 + ", " + playerCard2 + " with a total of " + playerTotal);
                     System.out.println("house is showing " + houseCard1);
