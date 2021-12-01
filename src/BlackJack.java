@@ -3,7 +3,10 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class BlackJack {
-    static boolean playerStillPlaying = true;
+    // things to add
+    // fix ace issue
+    // add stddraw stuff
+    // add betting
 
     public static void main(String[] args) {
         Scanner scnr = new Scanner(System.in);
@@ -13,13 +16,17 @@ public class BlackJack {
         int houseTotal = 0;
         int playerCard1, playerCard2, houseCard1, houseCard2, card;
         int result;
+        int additionalCardVarPlayer = 0;
+        int additionalCardVarHouse = 0;
+        int count = 0;
         char response;
         boolean gameOver = false;
         Draw draw = new Draw();
 
-        StdDraw.setCanvasSize(500, 500);
-        StdDraw.setScale(0, 10);
+        StdDraw.setCanvasSize(600, 600);
+        StdDraw.setScale(-2, 14);
         StdDraw.clear(new Color(0,100,0));
+
         String filename ="cardBack.png";
         StdDraw.picture(5,5, filename, 2 ,3);
 
@@ -42,7 +49,6 @@ public class BlackJack {
         draw.cardsDealt(playerCard1,playerCard2);
         draw.dealerCards(houseCard1);
 
-
         System.out.println("player has: " + playerCard1 + ", " + playerCard2 + " with a total of " + playerTotal);
         System.out.println("house is showing " + houseCard1);
         result = game.seeIfResult(playerTotal);
@@ -57,7 +63,7 @@ public class BlackJack {
 
         while (true) {
             //hit counter
-            int count = 0;
+
             if (response == 'h' && playerTotal < 21) {
                 card = game.returnActualCard(deck);
                 playerTotal += game.cardBJValue(card);
@@ -139,10 +145,5 @@ public class BlackJack {
                 }
             }
         }
-
-
-
-
-
     }
 }

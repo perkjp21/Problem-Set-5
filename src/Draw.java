@@ -3,6 +3,7 @@ import java.util.Random;
 
 public class Draw {
     Random rand = new Random();
+
     public void cardsDealt(int first, int second) {
         int suit1 = rand.nextInt(4);
         int suit2 = rand.nextInt(4);
@@ -23,7 +24,6 @@ public class Draw {
         if (suit1 == 1) {
                 String filename ="Club.png";
                 StdDraw.picture(1,2, filename, .5 ,.75);
-
         }
         if (suit1 == 2) {
             String filename ="Spade4.jpeg";
@@ -67,34 +67,25 @@ public class Draw {
             else {
                 StdDraw.text(1,1, card1);
             }
-
-        }
-        else {
+        } else {
             StdDraw.text(1,1, card1);
         }
 
         if (second == 11) {
-            StdDraw.text(3.5, 1, "Q");
+            StdDraw.text(3.5, 1, "J");
         }
         else if (second == 12) {
-            StdDraw.text(3.5,1, "K");
+            StdDraw.text(3.5,1, "Q");
         }
         else if (second == 13) {
-            StdDraw.text(3.5,1, "A");
+            StdDraw.text(3.5,1, "K");
         }
-        else if (second == 10) {
-            int a = rand.nextInt(2);
-            if (a % 2 == 0) {
-                StdDraw.text(3.5,1, "J");
-            }
-            else {
-                StdDraw.text(3.5,1, card2);
-            }
+        else if (second == 1) {
+            StdDraw.text(3.5,1, "A");
         }
         else {
             StdDraw.text(3.5,1, card2);
         }
-
     }
 
     public void dealerCards(int second) {
@@ -157,6 +148,6 @@ public class Draw {
         StdDraw.setPenColor(Color.black);
         StdDraw.text(3.5 + count * 2.5,9, card1);
     }
-    }
+}
 
 
