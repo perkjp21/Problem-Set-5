@@ -47,7 +47,7 @@ public class BlackJack {
         Draw draw = new Draw();
 
         //creates the canvas
-        StdDraw.setCanvasSize(600, 600);
+        StdDraw.setCanvasSize(800, 800);
         StdDraw.setScale(-2, 14);
         StdDraw.clear(new Color(0,100,0));
 
@@ -102,6 +102,7 @@ public class BlackJack {
         //response = scnr.next().charAt(0);
 
         //response = returnClick();
+
         while (true) {
             //asks if the mouse is clicked
             if (StdDraw.isMousePressed()) {
@@ -120,7 +121,6 @@ public class BlackJack {
 
                 }
                 StdDraw.pause(100);
-
                 if (response == 'h' && playerTotal < 21) {
                     //summons another card
                     card = game.returnActualCard(deck);
@@ -218,12 +218,24 @@ public class BlackJack {
 
                         // begin game
                         houseCard1 = game.returnActualCard(deck);
+                        if (houseCard1 == 1) {
+                            numOfHouseAces++;
+                        }
                         houseTotal += game.cardBJValue(houseCard1);
                         playerCard1 = game.returnActualCard(deck); // first card
+                        if (playerCard1 == 1) {
+                            numOfPlayerAces++;
+                        }
                         playerTotal += game.cardBJValue(playerCard1);
                         houseCard2 = game.returnActualCard(deck);
+                        if (houseCard2 == 1) {
+                            numOfHouseAces++;
+                        }
                         houseTotal += game.cardBJValue(houseCard2);
                         playerCard2 = game.returnActualCard(deck); // second card
+                        if (playerCard2 == 1) {
+                            numOfPlayerAces++;
+                        }
                         playerTotal += game.cardBJValue(playerCard2);
 
                         //draws everything to the screen
