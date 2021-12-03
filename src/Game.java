@@ -29,6 +29,7 @@ public class Game {
     }
 
     public void printDeck(int[][] deck) {
+        //prints the deck to the terminal
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
                 System.out.print("Spades: ");
@@ -52,9 +53,11 @@ public class Game {
         int randSuit;
         int randNum;
 
+        //gets random number and suit
         randSuit = rndm.nextInt(3) + 1;
         randNum = rndm.nextInt(12) + 1;
 
+        //makes sure random number doesn't = 0
         while (true) {
             if (deck[randSuit][randNum] != 0) {
                 deck[randSuit][randNum] = 0;
@@ -68,6 +71,7 @@ public class Game {
     }
 
     public int cardBJValue(int randNum) {
+
         int finalInt;
         if (randNum == 10 || randNum == 11 || randNum == 12 || randNum == 13) {
             finalInt = 10;
@@ -80,6 +84,7 @@ public class Game {
     }
 
     public int seeIfResult(int playerTotal) {
+        //checks the player result and gives it a scoring number
         if (playerTotal == 21) {
             return 3; // bj
         } else if (playerTotal > 21) {
