@@ -1,4 +1,11 @@
-
+/** This program creates a version of Blackjack where the computer is the dealer.
+ * The game gives the dealer and player cards and asks the player if they want to hit
+ * or stay. Also, they can play again if they win or lose. This program utilizes two ADTs
+ * which are of the Draw and Game classes. The Game class simulates the blackjack game
+ * and creates the numbers on the cards while the draw class draws everything on
+ * the screen.
+ * @ Authors: Reid Brown and Johnny Perkins
+ */
 
 import java.awt.*;
 import java.util.Scanner;
