@@ -28,6 +28,8 @@ public class BlackJack {
         int houseTotal = 0;
         int playerCard1, playerCard2, houseCard1, houseCard2, card;
         int result;
+        int numOfPlayerAces = 0;
+        int numOfHouseAces = 0;
         int count = 0;
         char response = 'z';
         boolean gameOver = false;
@@ -48,12 +50,24 @@ public class BlackJack {
         game.resetDeck(deck);
         // begin game, will make into method in a little
         houseCard1 = game.returnActualCard(deck);
+        if (houseCard1 == 1) {
+            numOfHouseAces++;
+        }
         houseTotal += game.cardBJValue(houseCard1);
         playerCard1 = game.returnActualCard(deck); // first card
+        if (playerCard1 == 1) {
+            numOfPlayerAces++;
+        }
         playerTotal += game.cardBJValue(playerCard1);
         houseCard2 = game.returnActualCard(deck);
+        if (houseCard2 == 1) {
+            numOfHouseAces++;
+        }
         houseTotal += game.cardBJValue(houseCard2);
         playerCard2 = game.returnActualCard(deck); // second card
+        if (playerCard2 == 1) {
+            numOfPlayerAces++;
+        }
         playerTotal += game.cardBJValue(playerCard2);
 
         // will add specifics later
@@ -96,7 +110,14 @@ public class BlackJack {
 
                 if (response == 'h' && playerTotal < 21) {
                     card = game.returnActualCard(deck);
+                    if (card == 1) {
+                        numOfPlayerAces++;
+                    }
                     playerTotal += game.cardBJValue(card);
+                    if (playerTotal > 21 && numOfPlayerAces > 0) {
+                        playerTotal = playerTotal - 10;
+                        numOfPlayerAces--;
+                    }
                     result = game.seeIfResult(playerTotal);
                     count++;
                     draw.playerHit(card, count);
@@ -111,6 +132,7 @@ public class BlackJack {
                         gameOver = true;
                     } else if (result == 3) {
                         System.out.println("You have 21");
+                        gameOver = true;
                     }
                 } else if (response == 's') {
                     draw.dealerFlip(houseCard2);
@@ -121,7 +143,14 @@ public class BlackJack {
                     while (houseTotal < 17) {
                         i++;
                         card = game.returnActualCard(deck);
+                        if (card == 1) {
+                            numOfHouseAces++;
+                        }
                         draw.houseHits(card, i);
+                        if (houseTotal > 21 && numOfHouseAces > 0) {
+                            houseTotal = houseTotal - 10;
+                            numOfHouseAces--;
+                        }
                         houseTotal += game.cardBJValue(card);
                         System.out.println("house got " + card + " and now has " + houseTotal);
                     }
@@ -134,7 +163,7 @@ public class BlackJack {
                         } else if (houseTotal == playerTotal) {
                             System.out.println("Push");
                             StdDraw.setPenColor(Color.white);
-                            StdDraw.text(3,10,"Player and house both have" + playerTotal + ". Push!");
+                            StdDraw.text(3,10,"Player and house both have " + playerTotal + ". Push!");
                             gameOver = true;
                         } else {
                             System.out.println("Player Wins");
@@ -146,7 +175,7 @@ public class BlackJack {
                     } else {
                         System.out.println("House busts, player wins");
                         StdDraw.setPenColor(Color.white);
-                        StdDraw.text(3,10,"House busts, with " + houseTotal + " you win!");
+                        StdDraw.text(3,10,"House busts with " + houseTotal + ", you win!");
                         gameOver = true;
                     }
                 }
@@ -159,6 +188,8 @@ public class BlackJack {
                         playerTotal = 0;
                         houseTotal = 0;
                         count = 0;
+                        numOfPlayerAces = 0;
+                        numOfHouseAces = 0;
 
                         // begin game, will make into method in a little
                         houseCard1 = game.returnActualCard(deck);

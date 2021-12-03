@@ -71,6 +71,8 @@ public class Game {
         int finalInt;
         if (randNum == 10 || randNum == 11 || randNum == 12 || randNum == 13) {
             finalInt = 10;
+        } else if (randNum == 1){
+            finalInt = 11;
         } else {
             finalInt = randNum;
         }
