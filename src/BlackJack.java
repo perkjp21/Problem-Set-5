@@ -7,30 +7,6 @@ public class BlackJack {
     // fix ace issue
     // add stddraw stuff
     // add betting
-    public static char returnClick() {
-        double x = 0;
-        double y = 0;
-        char response;
-        while (true) {
-            if (StdDraw.isMousePressed()) {
-                x = StdDraw.mouseX();
-                y = StdDraw.mouseY();
-
-                if (x < 1.5 && x > -1.5 && y > -1 && y < 0) {
-                    System.out.println("hit");
-                    response = 'h';
-                    break;
-                } else if (x < 4.5 && x > 2.5 && y > -1 && y < 0) {
-                    System.out.println("stay");
-                    response = 's';
-                    break;
-                }
-
-                StdDraw.pause(100);
-            }
-        }
-        return response;
-    }
 
     public static void printButtons() {
         StdDraw.setPenColor(Color.blue);
@@ -52,8 +28,6 @@ public class BlackJack {
         int houseTotal = 0;
         int playerCard1, playerCard2, houseCard1, houseCard2, card;
         int result;
-        int additionalCardVarPlayer = 0;
-        int additionalCardVarHouse = 0;
         int count = 0;
         char response = 'z';
         boolean gameOver = false;
@@ -66,6 +40,7 @@ public class BlackJack {
         printButtons();
 
         String filename ="cardBack.png";
+
         StdDraw.picture(5,5, filename, 2 ,3);
 
         int[][] deck = new int[4][13];
@@ -130,7 +105,9 @@ public class BlackJack {
                         System.out.println("Type h for hit or s for stay");
                     } else if (result == 2) {
                         draw.dealerFlip(houseCard2);
-                        System.out.println("You busted with " + playerTotal + ". Dealer Wins");
+                        System.out.println("You busted with " + playerTotal + ". House Wins");
+                        StdDraw.setPenColor(Color.white);
+                        StdDraw.text(3,10,"You busted with " + playerTotal + ". House wins!");
                         gameOver = true;
                     } else if (result == 3) {
                         System.out.println("You have 21");
@@ -151,16 +128,25 @@ public class BlackJack {
                     if (houseTotal <= 21) {
                         if (houseTotal > playerTotal) {
                             System.out.println("House wins");
+                            StdDraw.setPenColor(Color.white);
+                            StdDraw.text(3,10,"House wins with " + houseTotal);
                             gameOver = true;
                         } else if (houseTotal == playerTotal) {
                             System.out.println("Push");
+                            StdDraw.setPenColor(Color.white);
+                            StdDraw.text(3,10,"Player and house both have" + playerTotal + ". Push!");
                             gameOver = true;
                         } else {
                             System.out.println("Player Wins");
+                            StdDraw.setPenColor(Color.white);
+                            StdDraw.text(3,10,"Player wins with " + playerTotal);
+
                             gameOver = true;
                         }
                     } else {
                         System.out.println("House busts, player wins");
+                        StdDraw.setPenColor(Color.white);
+                        StdDraw.text(3,10,"House busts, with " + houseTotal + " you win!");
                         gameOver = true;
                     }
                 }
@@ -172,6 +158,7 @@ public class BlackJack {
                         game.resetDeck(deck);
                         playerTotal = 0;
                         houseTotal = 0;
+                        count = 0;
 
                         // begin game, will make into method in a little
                         houseCard1 = game.returnActualCard(deck);
@@ -186,6 +173,7 @@ public class BlackJack {
                         draw.cardsDealt(playerCard1, playerCard2);
                         draw.dealerCards(houseCard1);
                         printButtons();
+                        StdDraw.picture(5,5, filename, 2 ,3);
                         gameOver = false;
 
                         System.out.println("player has: " + playerCard1 + ", " + playerCard2 + " with a total of " + playerTotal);
