@@ -1,6 +1,12 @@
 import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
+// author: reid brown
+/*This is a very basic banking application that gives you the option to
+deposit, withdraw, check balance and most recent transaction
+*
+* */
+
 public class BankingApp {
     public static void main(String[] args) {
         BankAccount bnk = new BankAccount("Reid", "DFSDAG");
